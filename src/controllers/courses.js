@@ -1,1 +1,5 @@
-console.log('hola desde course')
+import {btnLogout} from '../services/logout'
+
+export function init(){
+    btnLogout();
+}

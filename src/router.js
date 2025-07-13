@@ -1,4 +1,4 @@
-import{getLoggerdUser} from './services/storage'
+import{getUserLogged} from './services/storage'
 
 const routes = {
     '/' : '/src/views/home.html',
@@ -15,11 +15,11 @@ const controllers = {
     '/register' :  './controllers/register.js',
     '/courses' :  './controllers/courses.js',
     '/dashboard' :  './controllers/dashboard.js',
-    '/welcome' :  '/controllers/welcome.js'
+    '/welcome' :  './controllers/welcome.js'
 };
 const guards = {
     '/login' : (user) => !user,
-    'welcome' : (user) => !!user,
+    '/welcome' : (user) => !!user,
     '/dashboard' : (user) => user?.rol === 'admi'
 }
 
@@ -49,19 +49,18 @@ function checkAcces(path, user){
     const guard = guards[path];
 
     if(guard && !guard(user)){
-        if(path === '/login' && user) return null;
-
-        return user ? '/404' : '/login';
-    }
-
-    return path;
-}
-
-
+        if(path === '/login' && user){return '/welcome'};
+            return user ? '/404' : '/login';
+    } 
+        return path;
+    
+};
+   
 
 export function navegation(path){
-    user = getLoggerdUser();
-    accessRoute = checkAcces(path, user);
+    const user = getUserLogged();
+    console.log(user)
+    const accessRoute = checkAcces(path, user);
 
     if(!accessRoute) return;
     history.pushState(null,null,accessRoute);
@@ -70,10 +69,10 @@ export function navegation(path){
 };
 
 window.addEventListener('popstate',() => {
-    loadView(location.pathname)
+    navegation(location.pathname)
 });
 
-export function navigationTag(){
+export function navegationTag(){
     document.addEventListener('click',(event) => {
         const elemento = event.target.closest('[data-link]');
         if(!elemento) return;

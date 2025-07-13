@@ -1,5 +1,8 @@
 import './style.css';
-import { navigation,navigationTag} from './router.js';
+import { navegation,navegationTag} from './router.js';
 
-navigation(location.pathname);
-navigationTag();
+
+document.addEventListener('DOMContentLoaded', () => {
+  navegation(location.pathname); 
+  navegationTag();               
+});

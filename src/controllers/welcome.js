@@ -1,9 +1,5 @@
-import { logoutUser } from "../services/storage";
+import {btnLogout} from '../services/logout'
 
 export function init(){
-    const logOutBtn = document.querySelector('#log-out-btn');
-    logOutBtn.addEventListener('click', (event) =>{
-        logoutUser();
-        alert('user elimnado')
-    })
+    btnLogout();
 }

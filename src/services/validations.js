@@ -1,6 +1,7 @@
 import CryptoJS from 'crypto-js';
 import {apiRequest} from '../api/request';
 
+
 export function validateInputs(...inputs){
      return inputs.every(input => input !== null && input !== undefined && input.trim() !== '');
 };
@@ -30,22 +31,5 @@ export function hashPass(password){
     return CryptoJS.SHA512(password).toString();
 };
 
-export function validateLogged(user){
-    const token = localStorage.getItem('token');
-    if(!token) return null;
 
-
-    try {
-        
-        const decoded = JSON.parse(atob(token));
-        if(decoded.exp < Date.now()){
-            localStorage.removeItem('token');
-            return null;
-        }
-        return decoded;
-    } catch (error) {
-        console.log('token invalido')
-        return null
-    }
-};
         
