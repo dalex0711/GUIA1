@@ -7,30 +7,17 @@
       "role": "admi"
     },
     {
-      "id": "329f",
+      "id": "8aec",
       "name": "dal",
       "email": "dal@example.com",
-      "password": "aa66dce7084852d676aef7596f4f6436339b27f380aef262bb624d4b98a4a6830b93724323d00f448efb0d8b15641c88c4bc5f359ea02f2186228624ebaa9486"
-    },
-    {
-      "id": "a380",
-      "name": "dal2",
-      "email": "dal2@example.com",
-      "password": "b1d0f65b562f4713247714adf9c47c7342c1e37e81f7146f48b040f4ab8ec89fc86a631c9586cd82f6b59cead0e482fb6c98ae0a45c78dc42de0e1139e70b28f",
+      "password": "ef51446dc40a8df813254d054e2d4f0c65e6e3a239449060fd75c5216c6694716e8fb18d67df03258298ffa29b25bbf77726711165be40a15ffa627f680ff05c",
       "rol": "student"
     },
     {
-      "id": "c3de",
-      "name": "dal",
-      "email": "dal3@gmail.com",
-      "password": "b1d0f65b562f4713247714adf9c47c7342c1e37e81f7146f48b040f4ab8ec89fc86a631c9586cd82f6b59cead0e482fb6c98ae0a45c78dc42de0e1139e70b28f",
-      "rol": "student"
-    },
-    {
-      "id": "c6c4",
-      "name": "dal",
-      "email": "dal11@mm.com",
-      "password": "fbec32a41c2fe38ffae3abf219810d594802ca0aa7b69052f8df206470424e2b7359ddfea9ec2caca88c8c1c27c4f54638e460582e560a72e299c52dced1b56a",
+      "id": "e0ac",
+      "name": "user",
+      "email": "user1@u.com",
+      "password": "41609b0c05f2191e9b6db8f1569da69f9d738f1c87c1a7d0410d599e74c9c7b156d55096e75286abc3dbde82e5ec196e0381ea4bd2e16723205cc19a1f8d4d02",
       "rol": "student"
     }
   ],

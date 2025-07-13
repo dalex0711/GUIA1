@@ -26,5 +26,6 @@ export async function apiRequest(method, endpoint = '',body = null) {
     } catch (error) {
         const menssage = error.statusText || "An error has ocurred";
         console.log(menssage)
+        throw error;
     }
 } 

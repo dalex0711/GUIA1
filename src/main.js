@@ -1,6 +1,5 @@
 import './style.css';
-import { loadView,navigationTag} from './router.js';
+import { navigation,navigationTag} from './router.js';
 
-
-loadView(location.pathname);
+navigation(location.pathname);
 navigationTag();

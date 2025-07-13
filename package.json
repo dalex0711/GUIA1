@@ -7,9 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start:api": "json-server --watch db.json --port 3000"
+    "start:api": "json-server --watch ./src/database/db.json --port 3000"
   },
   "devDependencies": {
+    "json-server": "^0.17.4",
     "vite": "^7.0.4"
   },
   "dependencies": {

@@ -19,13 +19,16 @@ export  function init(){
         if(!inputsValidator){
             //eturn  showMessage('You cannot leave fields empty','error');
             console.log('no puedes tenercampos vacios')
+            return
         }else if(!passwordValidator){
            // return showMessage('The password must have 1 uppercase, 1 lowercase, 1 character and be greater than 4','error');
            console.log('la pass es demasiado corta')
+           return
         };
 
        if(await emailExists(email)){
         console.log('el email ya existe')
+        return
        };
 
        const hashedPassword = hashPass(password); 

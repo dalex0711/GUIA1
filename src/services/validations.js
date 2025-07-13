@@ -21,11 +21,31 @@ export async function emailExists(email) {
 }
 
 export async function validateUser(email,password) {
-    const allUser = await  apiRequest('GET','/users');
-    const found = allUser.find(u => u.email === email && u.password === password);
+    const allUser = await  apiRequest('GET','users');
+    const found = allUser?.find(u => u.email === email && u.password === password);
     return found || null;
 };
 
 export function hashPass(password){
     return CryptoJS.SHA512(password).toString();
 };
+
+export function validateLogged(user){
+    const token = localStorage.getItem('token');
+    if(!token) return null;
+
+
+    try {
+        
+        const decoded = JSON.parse(atob(token));
+        if(decoded.exp < Date.now()){
+            localStorage.removeItem('token');
+            return null;
+        }
+        return decoded;
+    } catch (error) {
+        console.log('token invalido')
+        return null
+    }
+};
+        

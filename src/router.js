@@ -1,9 +1,12 @@
+import{getLoggerdUser} from './services/storage'
+
 const routes = {
     '/' : '/src/views/home.html',
     '/login' : '/src/views/login.html',
     '/register' :  '/src/views/register.html',
     '/courses' :  '/src/views/courses.html',
     '/dashboard' :  '/src/views/dashboard.html',
+    '/welcome' :  '/src/views/welcome.html',
     '/404' : '/src/views/404.html',
 };
 const controllers = {
@@ -11,8 +14,15 @@ const controllers = {
     '/login' : './controllers/login.js',
     '/register' :  './controllers/register.js',
     '/courses' :  './controllers/courses.js',
-    '/dashboard' :  './controllers/dashboard.js'
+    '/dashboard' :  './controllers/dashboard.js',
+    '/welcome' :  '/controllers/welcome.js'
 };
+const guards = {
+    '/login' : (user) => !user,
+    'welcome' : (user) => !!user,
+    '/dashboard' : (user) => user?.rol === 'admi'
+}
+
 const app = document.getElementById('app');
 
 export async function loadView(path) {
@@ -35,9 +45,27 @@ export async function loadView(path) {
     }
 };
 
+function checkAcces(path, user){
+    const guard = guards[path];
+
+    if(guard && !guard(user)){
+        if(path === '/login' && user) return null;
+
+        return user ? '/404' : '/login';
+    }
+
+    return path;
+}
+
+
+
 export function navegation(path){
-    history.pushState(null,null,path);
-    loadView(path)
+    user = getLoggerdUser();
+    accessRoute = checkAcces(path, user);
+
+    if(!accessRoute) return;
+    history.pushState(null,null,accessRoute);
+    loadView(accessRoute)
 
 };
 
@@ -56,5 +84,7 @@ export function navigationTag(){
         if(path){
             navegation(path)
         }
-    })
+    });
+
 };
+
