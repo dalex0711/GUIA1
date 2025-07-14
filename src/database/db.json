@@ -13,39 +13,21 @@
       "password": "41609b0c05f2191e9b6db8f1569da69f9d738f1c87c1a7d0410d599e74c9c7b156d55096e75286abc3dbde82e5ec196e0381ea4bd2e16723205cc19a1f8d4d02",
       "rol": "student",
       "id": 2
+    },
+    {
+      "name": "Dal",
+      "email": "dal@d.com",
+      "password": "ef51446dc40a8df813254d054e2d4f0c65e6e3a239449060fd75c5216c6694716e8fb18d67df03258298ffa29b25bbf77726711165be40a15ffa627f680ff05c",
+      "rol": "student",
+      "id": 3
     }
   ],
   "events": [
     {
-      "name": "bioligy",
-      "capacity": "10",
+      "name": "da",
+      "capacity": "12",
       "id": 1
-    },
-    {
-      "name": "english",
-      "capacity": "10",
-      "id": 2
-    },
-    {
-      "name": "d",
-      "capacity": "1",
-      "id": 3
-    },
-    {
-      "name": "desarrollo",
-      "capacity": "2",
-      "id": 4
-    },
-    {
-      "name": "sociales",
-      "capacity": "10",
-      "id": 5
-    },
-    {
-      "name": "mates",
-      "capacity": "10",
-      "id": 6
     }
   ],
-  "registrations": []
+  "enrollments": []
 }

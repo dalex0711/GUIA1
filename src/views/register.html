@@ -1,16 +1,18 @@
-<section>
-    <form id="register-form">
-        <label for="userName">User</label>
-        <input type="text" name="userName" id="name">
+<section class="login-section">
+  <div class="login-wrapper">
+    <form id="register-form" class="login-form">
+      <label for="name">Name</label>
+      <input type="text" name="userName" id="name" required />
 
-        <label for="userEmail">Email</label>
-        <input type="text" name="userEmail" id="email">
-        
-        <label for="userPass">password</label>
-        <input type="password" name="userPass" id="password">
+      <label for="email">Email</label>
+      <input type="email" name="userEmail" id="email" placeholder="ejemplo@example.com" required />
 
-        <input type="submit" value="Log in">
+      <label for="password">Password</label>
+      <input type="password" name="userPass" id="password" required />
+
+      <input type="submit" value="Register" />
     </form>
 
-    <p><a data-link href="/login">Do you have an account?</a></p>
+    <p><a data-link href="/login">Already have an account?</a></p>
+  </div>
 </section>

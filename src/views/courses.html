@@ -1,12 +1,30 @@
 <header>
-    <nav>
-        <ul>
-            <li><a data-link href="/dashboard">Dash</a></li>
-        </ul>
-        <button class="log-out-btn"> Log out</button>
-    </nav>
+  <nav class="nav-bar">
+    <ul class="nav-links">
+      <li><a data-link href="#" id="view-my-courses">My Courses</a></li>
+    </ul>
+    <button class="log-out-btn">Log out</button>
+  </nav>
 </header>
 
 <main>
     <h1>Hola desde Courses</h1>
+    <div id="courses-container"></div>
+
+    <template id="course-template">
+        <div class="card-courses">
+            <ul>
+            <li class="card-content">
+                <div class="left">
+                <div class="imagen"></div>
+                <p class="course-name">Biology</p>
+                </div>
+                <div class="right">
+                <p class="course-capacity">10</p>
+                <button class="btn-action">Enroll</button>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </template>
 </main>

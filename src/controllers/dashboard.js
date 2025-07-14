@@ -1,6 +1,7 @@
 import {btnLogout} from '../services/logout'
 import{validateInputs} from '../services/validations'
 import{apiRequest} from '../api/request'
+import { showMessage } from '../services/messages';
 
 export async function init(){
  
@@ -20,7 +21,6 @@ export async function init(){
 
     //SE CREA UN NUEVO CURSO
     formCourse?.addEventListener('submit', async (e)=>{
-        formCourse.reset();
         e.preventDefault();
 
         const name = document.querySelector('#nameCourse').value;
@@ -35,7 +35,7 @@ export async function init(){
         //COMPROBAR EXISTENCIA.
         const coursesFound = await apiRequest('GET',`events?=name${name}`);
         if((coursesFound.length) > 0){
-            alert('el curso ya existe')
+            showMessage('The course already exists','error')
             return;
         }
 
@@ -43,6 +43,7 @@ export async function init(){
         formCourse.style.display = 'none';
         await apiRequest('POST', 'events', {name,capacity,});
         alert('Curso creado con éxito');
+        formCourse.reset();
         await renderCourses(tbody);
     });
 
@@ -51,17 +52,42 @@ export async function init(){
 //FUNCION AUX PARA MOSTRAR LA TABLA
 
 async function renderCourses(tbody) {
-    tbody.innerHTML = '';
-    const courses = await apiRequest('GET','events');
-    courses.forEach(couerse => {
-        const  row = document.createElement('tr');
-        row.innerHTML = `
-            <td> ${couerse.id}</td>
-            <td> ${couerse.name}</td>
-            <td> ${couerse.capacity}</td>
-        `
-        tbody.appendChild(row)       
+  tbody.innerHTML = '';
+
+  const courses = await apiRequest('GET', 'events');
+
+  courses.forEach(course => {
+    const row = document.createElement('tr');
+
+    // Rellenar la fila
+    row.innerHTML = `
+      <td>${course.id}</td>
+      <td>${course.name}</td>
+      <td>${course.capacity}</td>
+      <td>
+        <button class="edit-btn" data-id="${course.id}">Editar</button>
+        <button class="delete-btn" data-id="${course.id}">Eliminar</button>
+      </td>
+    `;
+
+    tbody.appendChild(row);
+
+    // Evento para eliminar el curso
+    const deleteBtn = row.querySelector('.delete-btn');
+    deleteBtn.addEventListener('click', async () => {
+      const confirmDelete = confirm('¿Deseas eliminar este curso?');
+      if (!confirmDelete) return;
+
+      try {
+        await apiRequest('DELETE', `events/${course.id}`);
+        alert('Curso eliminado con éxito');
+        await renderCourses(tbody); // Recargar tabla
+      } catch (error) {
+        alert('Error al eliminar el curso.');
+        console.error(error);
+      }
     });
 
     
-};
+  });
+}

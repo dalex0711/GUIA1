@@ -6,7 +6,6 @@ const routes = {
     '/register' :  '/src/views/register.html',
     '/courses' :  '/src/views/courses.html',
     '/dashboard' :  '/src/views/dashboard.html',
-    '/welcome' :  '/src/views/welcome.html',
     '/404' : '/src/views/404.html',
 };
 const controllers = {
@@ -14,13 +13,13 @@ const controllers = {
     '/login' : './controllers/login.js',
     '/register' :  './controllers/register.js',
     '/courses' :  './controllers/courses.js',
-    '/dashboard' :  './controllers/dashboard.js',
-    '/welcome' :  './controllers/welcome.js'
+    '/dashboard' :  './controllers/dashboard.js'
+    
 };
 const guards = {
     '/login' : (user) => !user,
-    '/welcome' : (user) => !!user,
-    '/dashboard' : (user) => user?.rol === 'admi'
+    '/dashboard' : (user) => user?.rol === 'admi',
+    '/courses' : (user) => user?.rol === 'student'
 }
 
 const app = document.getElementById('app');
@@ -37,7 +36,6 @@ export async function loadView(path) {
             if(module.init){
                 module.init();
             }
-            
         }
     } catch (error) {
         console.log(error)
@@ -46,16 +44,21 @@ export async function loadView(path) {
 };
 
 function checkAcces(path, user){
-    const guard = guards[path];
+  const guard = guards[path];
 
-    if(guard && !guard(user)){
-        if(path === '/login' && user){return '/welcome'};
-            return user ? '/404' : '/login';
-    } 
-        return path;
-    
-};
-   
+  if (guard && !guard(user)) {
+    // Si el usuario está logueado pero no debe entrar ahí
+    if (path === '/login' && user) {
+      // redirige según el rol
+      return user.rol === 'admi' ? '/dashboard' : '/courses';
+    }
+
+    // Si no está logueado y no tiene acceso
+    return user ? '/404' : '/login';
+  }
+
+  return path;
+}
 
 export function navegation(path){
     const user = getUserLogged();

@@ -1,51 +1,39 @@
 <header>
-    <nav>
-        <ul>
-            <li><a data-link href="/dashboard">Dash</a></li>
-        </ul>
-        <button class="log-out-btn"> Log out</button>
-    </nav>
+  <nav class="nav-bar">
+    <div></div>
+    <button class="log-out-btn">Log out</button>
+  </nav>
 </header>
 
-<main>
+<main class="dashboard-main">
+  <h1>Panel de Administración</h1>
 
-    <h1>Hola desde hash</h1>
-    
-    <section>
-        <div class="table-header">
-    <h2>Cursos</h2>
-    <button id="create-course-btn">Crear curso</button>
-  </div>
+  <section>
+    <div class="table-header">
+      <h2>Cursos</h2>
+      <button id="create-course-btn" class="btn-action">Crear curso</button>
+    </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Curso</th>
-        <th>Inscriptos</th>
-        <th>capacidad</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody id="table-body">
-      <!-- <tr>
-        <td>1</td>
-        <td>HTML Básico</td>
-        <td>4 semanas</td>
-        <td>Ana González</td>
-        <td><button>Editar</button> <button>Eliminar</button></td>
-      </tr> -->
-    </tbody>
-  </table>
+    <table class="course-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Curso</th>
+          <th>Capacidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
 
-  <form class="form-create-course" id="f-create-course">
-    <label for="nameCourse">Name of course</label>
-    <input type="text" name="nameCourse" id="nameCourse">
+    <form class="form-create-course" id="f-create-course">
+      <label for="nameCourse">Nombre del curso</label>
+      <input type="text" name="nameCourse" id="nameCourse" required>
 
-    <label for="capacity">Number capacity</label>
-    <input type="number" name="capacity" id="capacity">
-    <button type="submit">Create</button>
-  </form>
+      <label for="capacity">Capacidad</label>
+      <input type="number" name="capacity" id="capacity" required>
 
-    </section>
+      <button type="submit" class="btn-action">Crear</button>
+    </form>
+  </section>
 </main>
